@@ -1,0 +1,119 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    color-scheme: dark;
+  }
+
+  body {
+    @apply bg-canvas text-neutral-light font-sans antialiased;
+    font-feature-settings: 'ss01' on, 'cv01' on;
+  }
+
+  ::selection {
+    @apply bg-accent/30 text-white;
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.08);
+    border-radius: 999px;
+    border: 2px solid transparent;
+    background-clip: padding-box;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(255, 255, 255, 0.16);
+  }
+
+  :focus-visible {
+    outline: 2px solid #7cff6b;
+    outline-offset: 2px;
+    border-radius: 6px;
+  }
+}
+
+@layer components {
+  /* Shared translucent surface panel used for major page sections */
+  .panel {
+    @apply relative rounded-2xl border border-border bg-surface bg-card-gradient shadow-panel;
+  }
+
+  /* Small KPI / metric tile styling */
+  .metric-card {
+    @apply panel p-5 transition-all duration-200 hover:border-border-light hover:-translate-y-[1px];
+  }
+
+  /* Sidebar navigation item */
+  .nav-item {
+    @apply flex items-center gap-3 rounded-xl px-3.5 py-2.5 text-sm font-medium text-neutral transition-all duration-150;
+  }
+  .nav-item:hover {
+    @apply bg-white/[0.04] text-white;
+  }
+  .nav-item.active {
+    @apply bg-white/[0.06] text-white shadow-[inset_0_0_0_1px_rgba(124,255,107,0.25)];
+  }
+  .nav-item.active .nav-icon {
+    @apply text-accent;
+  }
+
+  /* Table row styling */
+  .table-row {
+    @apply border-b border-white/[0.05] transition-colors duration-150 hover:bg-white/[0.025];
+  }
+  .table-row:last-child {
+    @apply border-b-0;
+  }
+  .table-row.selected {
+    @apply bg-accent/[0.06];
+  }
+
+  /* Buttons */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold transition-all duration-150 focus-visible:outline-accent disabled:opacity-40 disabled:pointer-events-none;
+  }
+  .btn-primary {
+    @apply btn bg-accent text-black hover:bg-accent-dim active:scale-[0.98];
+  }
+  .btn-secondary {
+    @apply btn border border-border-light bg-white/[0.02] text-neutral-light hover:bg-white/[0.06] hover:text-white active:scale-[0.98];
+  }
+  .btn-ghost {
+    @apply btn text-neutral hover:bg-white/[0.06] hover:text-white active:scale-[0.98];
+  }
+  .btn-danger {
+    @apply btn bg-danger/15 text-danger border border-danger/30 hover:bg-danger/25 active:scale-[0.98];
+  }
+  .btn-icon {
+    @apply inline-flex h-9 w-9 items-center justify-center rounded-xl border border-border-light bg-white/[0.02] text-neutral transition-all duration-150 hover:bg-white/[0.06] hover:text-white;
+  }
+
+  /* Status chips */
+  .chip {
+    @apply inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-semibold;
+  }
+  .chip-success {
+    @apply chip bg-accent/15 text-accent;
+  }
+  .chip-warning {
+    @apply chip bg-warning/15 text-warning;
+  }
+  .chip-danger {
+    @apply chip bg-danger/15 text-danger;
+  }
+  .chip-neutral {
+    @apply chip bg-neutral/15 text-neutral-light;
+  }
+}
